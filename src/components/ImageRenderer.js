@@ -1,57 +1,55 @@
-import React, {useState, useEffect} from 'react'
-import PropTypes from 'prop-types'
-import {CircularProgress} from '@material-ui/core'
-import common from '@material-ui/core/colors/common'
-import grey from '@material-ui/core/colors/grey'
-import BrokenImage from '@material-ui/icons/BrokenImage'
+import React, { useState, useEffect } from "react";
+import PropTypes from "prop-types";
+import { CircularProgress } from "@material-ui/core";
+import common from "@material-ui/core/colors/common";
+import grey from "@material-ui/core/colors/grey";
+import BrokenImage from "@material-ui/icons/BrokenImage";
 
 const ImageRenderer = (props) => {
-  const [error, setError] = useState(false)
-  const [loaded, setLoaded] = useState(false)
-  const [prevSrc, setPrevSrc] = useState(null)
+  const [error, setError] = useState(false);
+  const [loaded, setLoaded] = useState(false);
+  const [prevSrc, setPrevSrc] = useState(null);
   const [animationDuration] = useState(
     props.animationDuration ? props.animationDuration : 3000
-  )
-  const [aspectRatio] = useState(props.aspectRatio ? props.aspectRatio : 1)
-  const [color] = useState(props.color ? props.color : common.white)
-  const [cover] = useState(props.cover ? props.cover : true)
+  );
+  const [aspectRatio] = useState(props.aspectRatio ? props.aspectRatio : 1);
+  const [color] = useState(props.color ? props.color : common.white);
+  const [cover] = useState(props.cover ? props.cover : true);
   const [disableError] = useState(
     props.disableError ? props.disableError : false
-  )
+  );
   const [disableSpinner] = useState(
     props.disableSpinner ? props.disableSpinner : false
-  )
+  );
   const [disableTransition] = useState(
     props.disableTransition ? props.disableTransition : false
-  )
+  );
   const [errorIcon] = useState(
     props.errorIcon ? (
       props.errorIcon
     ) : (
-      <BrokenImage style={{width: 48, height: 48, color: grey[399]}} />
+      <BrokenImage style={{ width: 48, height: 48, color: grey[399] }} />
     )
-  )
+  );
   const [iconContainerStyle] = useState(
     props.iconContainerStyle ? props.iconContainerStyle : null
-  )
-  const [imageStyle] = useState(props.imageStyle ? props.imageStyle : null)
+  );
+  const [imageStyle] = useState(props.imageStyle ? props.imageStyle : null);
   const [loading] = useState(
     props.loading ? (
       props.loading
     ) : (
       <CircularProgress color="primary" size={48} />
     )
-  )
-  const [onClick] = useState(props.onClick ? props.onClick : null)
-  const [style] = useState(props.style ? props.style : null)
-  
+  );
+  const [onClick] = useState(props.onClick ? props.onClick : null);
+  const [style] = useState(props.style ? props.style : null);
 
   useEffect(() => {
-    if (prevSrc !== props.src ) {
-      setPrevSrc(props.src)
+    if (prevSrc !== props.src) {
+      setPrevSrc(props.src);
     }
-  }, [props.src])
-
+  }, [props.src, prevSrc]);
 
   const imageTransition = !disableTransition && {
     opacity: loaded ? 1 : 0,
@@ -64,71 +62,72 @@ const ImageRenderer = (props) => {
       filterSaturate ${animationDuration}ms cubic-bezier(0.4, 0.0, 0.2, 1),
       opacity ${animationDuration / 2}ms cubic-bezier(0.4, 0.0, 0.2, 1)
     `,
-  }
+  };
 
-  const handleLoadImage = e => {
-    setError(false)
-    setLoaded(true)
+  const handleLoadImage = (e) => {
+    setError(false);
+    setLoaded(true);
     if (props.onLoad) {
-      props.onLoad(e)
+      props.onLoad(e);
     }
-  }
+  };
 
-  const handleImageError = e => {
+  const handleImageError = (e) => {
     if (props.src) {
-      setError(true)
+      setError(true);
       if (props.onError) {
-        props.onError(e)
+        props.onError(e);
       }
     }
-  }
+  };
 
   const styles = {
     root: {
       backgroundColor: color,
       paddingTop: `calc(1 / ${aspectRatio} * 100%)`,
-      position: 'relative',
+      position: "relative",
       ...style,
     },
     image: {
-      width: '100%',
-      height: '100%',
-      position: 'absolute',
-      objectFit: cover ? 'cover' : 'inherit',
+      width: "100%",
+      height: "100%",
+      position: "absolute",
+      objectFit: cover ? "cover" : "inherit",
       top: 0,
       left: 0,
       ...imageTransition,
       ...imageStyle,
     },
     iconContainer: {
-      width: '100%',
-      height: '100%',
-      position: 'absolute',
+      width: "100%",
+      height: "100%",
+      position: "absolute",
       top: 0,
       left: 0,
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-      pointerEvents: 'none',
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      pointerEvents: "none",
       ...iconContainerStyle,
     },
-  }
+  };
 
   return (
     <div style={styles.root} onClick={onClick}>
       <img
-        onLoad={e => handleLoadImage(e)}
+        alt=""
+        onLoad={(e) => handleLoadImage(e)}
         src={prevSrc}
         style={styles.image}
-        onError={e => handleImageError(e)}
+        onError={(e) => handleImageError(e)}
       />
       <div style={styles.iconContainer}>
         {!disableSpinner && !loaded && !error && loading}
         {!disableError && error && errorIcon}
       </div>
     </div>
-  )
-}
+  );
+};
 ImageRenderer.propTypes = {
   animationDuration: PropTypes.number,
   aspectRatio: PropTypes.number,
@@ -146,6 +145,6 @@ ImageRenderer.propTypes = {
   onLoad: PropTypes.func,
   src: PropTypes.string.isRequired,
   style: PropTypes.object,
-}
+};
 
-export default ImageRenderer
+export default ImageRenderer;
