@@ -1,8 +1,9 @@
 import React from "react";
-import ImageRenderer from "../components/ImageRenderer";
+
+import ImageRenderer from "../components/ImageRenderer/ImageRenderer";
 
 export default {
-  title: "Rendering image",
+  title: "Image Renderer",
   component: ImageRenderer,
 };
 
@@ -10,5 +11,5 @@ const Template = (args) => <ImageRenderer {...args} />;
 
 export const src = Template.bind({});
 src.args = {
-  src: "whats-cookin-storybook/src/stories/assets/WhatsForDinnerLogo.png",
+  src: "https://picsum.photos/id/237/200/300",
 };
