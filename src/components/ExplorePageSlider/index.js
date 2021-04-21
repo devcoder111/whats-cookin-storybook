@@ -1,43 +1,40 @@
-import React from 'react'
-import {useStyles} from './styles.js'
-import Slider from 'react-slick'
-import PropTypes from 'prop-types'
-import {Grid} from '@material-ui/core'
-import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos'
-import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos'
-import 'slick-carousel/slick/slick.css'
-import 'slick-carousel/slick/slick-theme.css'
-import CircleCard from '../CircleCard'
+import React from "react";
+import { useStyles } from "./styles.js";
+import Slider from "react-slick";
+import PropTypes from "prop-types";
+import { Grid } from "@material-ui/core";
+import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
+import ArrowForwardIosIcon from "@material-ui/icons/ArrowForwardIos";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import CircleCard from "../CircleCard";
 
-function NextArrow(props) {
-  const {className, style, onClick} = props
+function NextArrow({ className, style, onClick, ...props }) {
   return (
     <ArrowForwardIosIcon
       className={className}
-      style={{...style, display: 'block', color: 'gray', fontSize: '50px'}}
+      style={{ ...style, display: "block", color: "gray", fontSize: "50px" }}
       onClick={onClick}
     />
-  )
+  );
 }
 
-function PrevArrow(props) {
-  const {className, style, onClick} = props
+function PrevArrow({ className, style, onClick, ...props }) {
   return (
     <ArrowBackIosIcon
       style={{
         ...style,
-        display: 'block',
-        color: 'gray',
-        fontSize: '50px',
+        display: "block",
+        color: "gray",
+        fontSize: "50px",
       }}
       className={className}
       onClick={onClick}
     />
-  )
+  );
 }
-function ExplorePageSlider(props) {
-  const classes = useStyles()
-  const {circles, setPinAsCenter} = props
+function ExplorePageSlider({ circles, setPinAsCenter, ...props }) {
+  const classes = useStyles();
   const settings = {
     dots: true,
     speed: 500,
@@ -50,14 +47,7 @@ function ExplorePageSlider(props) {
     swipeToSlide: true,
     nextArrow: <NextArrow className={classes.sliderArrow} />,
     prevArrow: <PrevArrow className={classes.sliderArrow} />,
-    // beforeChange: () => {
-    //   if (currentIndex === 2) {
-    //     showFormDialog()
-    //   } else {
-    //     setcurrentIndex(currentIndex + 1)
-    //   }
-    // },
-  }
+  };
 
   return (
     <Grid className={classes.wrap}>
@@ -71,24 +61,51 @@ function ExplorePageSlider(props) {
         ))}
       </Slider>
     </Grid>
-  )
+  );
 }
 
 NextArrow.propTypes = {
+  /**
+   * Prop to allow passing a classname to the component
+   */
   className: PropTypes.any,
+  /**
+   * Object to directly pass style props
+   */
   style: PropTypes.object,
+  /**
+   * function passed to handle the click
+   */
   onClick: PropTypes.func,
-}
+};
 
 PrevArrow.propTypes = {
+  /**
+   * Prop to allow passing a classname to the component
+   */
   className: PropTypes.any,
+  /**
+   * Object to directly pass style props
+   */
   style: PropTypes.object,
+  /**
+   * function passed to handle the click
+   */
   onClick: PropTypes.func,
-}
+};
 ExplorePageSlider.propTypes = {
-  circle: PropTypes.any,
+  /**
+   * Circle object should contain name, image, purpose with name mandatory
+   */
+  circle: PropTypes.object,
+  /**
+   * function to set the pin that is currently hovered to center. Passed to circle card.
+   */
   setPinAsCenter: PropTypes.func,
+  /**
+   * Array of circle objects
+   */
   circles: PropTypes.any,
-}
+};
 
-export default ExplorePageSlider
+export default ExplorePageSlider;
