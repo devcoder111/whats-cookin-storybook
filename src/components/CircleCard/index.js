@@ -61,7 +61,7 @@ CircleCard.propTypes = {
 CircleCard.defaultProps = {
   circle: null,
   handleClick: undefined,
-  mouseIn: "undefined",
+  mouseIn: undefined,
 };
 
 export default CircleCard;
