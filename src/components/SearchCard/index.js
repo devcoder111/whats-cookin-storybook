@@ -1,6 +1,6 @@
 import React from 'react'
 import {Typography, Paper} from '@material-ui/core'
-import ImageRenderer from '../ImageRenderer'
+import ImageRenderer from '../ImageRenderer/ImageRenderer'
 import Description from '../Description'
 import {useStyles} from './styles.js'
 import PropTypes from 'prop-types'
