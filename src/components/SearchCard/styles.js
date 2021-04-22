@@ -1,10 +1,11 @@
 import {makeStyles} from '@material-ui/core'
+const imageSize = '185px'
 export const useStyles = makeStyles({
   image: {
-    minHeight: '200px',
-    maxHeight: '200px',
-    minWidth: '200px',
-    maxWidth: '200px',
+    minHeight: imageSize,
+    maxHeight: imageSize,
+    minWidth: imageSize,
+    maxWidth: imageSize,
     cursor: 'pointer',
   },
   details: {
