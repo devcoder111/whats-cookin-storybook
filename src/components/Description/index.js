@@ -2,9 +2,15 @@ import React, {useState, useEffect} from 'react'
 import PropTypes from 'prop-types'
 import {useStyles} from './styles'
 import Truncate from 'react-truncate-markup'
-import {Button,Dialog,DialogActions,
-  DialogContent,DialogContentText,
-  DialogTitle,Link} from '@material-ui/core'
+import {
+  Button,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogContentText,
+  DialogTitle,
+  Link,
+} from '@material-ui/core'
 
 function Description(props) {
   const classes = useStyles()
@@ -14,13 +20,13 @@ function Description(props) {
   const [open, setOpen] = useState(false)
 
   useEffect(() => {
-    const letters = props.expectedLettersInLine || 50;
+    const letters = props.expectedLettersInLine || 50
     let counter = 0
     props.text.split(/\r\n|\r|\n/).forEach(line => {
       counter += Math.ceil((line.length + 1) / letters)
     })
     setLineCounter(counter)
-  }, [props.text,props.expectedLettersInLine])
+  }, [props.text, props.expectedLettersInLine])
 
   const handleTruncate = truncated => {
     if (isTruncated !== truncated) {
@@ -111,8 +117,8 @@ Description.propTypes = {
   lines: PropTypes.number,
   maxLines: PropTypes.number,
   text: PropTypes.string,
-  bodyClassName:PropTypes.string,
-  expectedLettersInLine:PropTypes.number
+  bodyClassName: PropTypes.string,
+  expectedLettersInLine: PropTypes.number,
 }
 
 export default Description

@@ -24,9 +24,9 @@ export const useStyles = makeStyles({
     lineHeight: '37px',
     paddingBottom: '6px',
     cursor: 'pointer',
-    '&:hover':{
-      color:"#a3330f"
-    }
+    '&:hover': {
+      color: '#a3330f',
+    },
   },
   subHeadline: {
     fontFamily: 'Arial, Helvetica, sans-serif',
