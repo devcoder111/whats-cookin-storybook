@@ -20,7 +20,7 @@ function Description(props) {
       counter += Math.ceil((line.length + 1) / letters)
     })
     setLineCounter(counter)
-  }, [props.text])
+  }, [props.text,props.expectedLettersInLine])
 
   const handleTruncate = truncated => {
     if (isTruncated !== truncated) {
