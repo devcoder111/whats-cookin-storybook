@@ -6,28 +6,61 @@ import {useStyles} from './styles.js'
 import PropTypes from 'prop-types'
 import Dollar from './dollar'
 import Heart from './Heart'
+import Gift from './gift'
 import Description from '../Description'
 
 function OfferItemCard(props) {
   const classes = useStyles()
-  const {id,title,photo,onClick,date,time,by,member_id,active_circle,Des} = props
- 
+  const {
+    id,
+    title,
+    photo,
+    onClick,
+    date,
+    time,
+    by,
+    member_id,
+    active_circle,
+    Des,
+    isHeart,
+    isPaid,
+  } = props
+  const [heartAnimation, setHearAnimation] = useState(isHeart)
+
   return (
     <Paper className={classes.root}>
       <Link to={`offeritem/${id}`} onClick={() => onClick()}>
-        <div >
-        <ImageRenderer style={{padding:"5px"}} imageStyle={{borderRadius:"16px",
-        minHeight: '204px',minWidth: '354px',
-        maxHeight: '204px',maxWidth: '354px',position: "relative"}} src={photo} />
+        <div>
+          <ImageRenderer
+            style={{padding: '5px'}}
+            imageStyle={{
+              borderRadius: '16px',
+              minHeight: '204px',
+              minWidth: '354px',
+              maxHeight: '204px',
+              maxWidth: '354px',
+              position: 'relative',
+            }}
+            src={photo}
+          />
         </div>
       </Link>
       <div>
         <span className={classes.line1}>
-          <Typography className={classes.headline} component="h2">{title}</Typography>
+          <Typography className={classes.headline} component="h2">
+            {title}
+          </Typography>
           <span>
-            <Heart />
-            <span className={classes.icon}>
-              <Dollar/>
+            <span
+              className={classes.clickable}
+              onClick={() => setHearAnimation(!heartAnimation)}>
+              <Heart className={heartAnimation ? classes.heart : null} />
+            </span>
+            <span className={isPaid?classes.iconDollar:classes.icon}>
+              {isPaid?
+              <Dollar /> :
+              <Gift />
+              }
             </span>
           </span>
         </span>
@@ -40,25 +73,27 @@ function OfferItemCard(props) {
           </Typography>
         </span>
         <span className={classes.line2}>
-        <Typography className={classes.subheadline} component="h3">
-          By:{' '}
-          <Link className={classes.link}
-            to={{
-              pathname: `/memberprofile/${member_id}`,
-              state: {
-                memberId: member_id,
-                activeCircleId: active_circle,
-              },
-            }}>
-            {by}
-          </Link>
-        </Typography>
+          <Typography className={classes.subheadline} component="h3">
+            By:{' '}
+            <Link
+              className={classes.link}
+              to={{
+                pathname: `/memberprofile/${member_id}`,
+                state: {
+                  memberId: member_id,
+                  activeCircleId: active_circle,
+                },
+              }}>
+              {by}
+            </Link>
+          </Typography>
         </span>
         <span className={classes.line2}>
-        {(Des &&
-        <Typography className={classes.subheadline} component="h3">
-          <Description text={Des} lines={2} Disable={true}/>
-        </Typography>)}
+          {Des && (
+            <Typography className={classes.subheadline} component="h3">
+              <Description text={Des} lines={2} Disable={true} />
+            </Typography>
+          )}
         </span>
       </div>
     </Paper>
@@ -75,7 +110,9 @@ OfferItemCard.propTypes = {
   by: PropTypes.string,
   member_id: PropTypes.number,
   active_circle: PropTypes.number,
-  Des:PropTypes.string,
+  Des: PropTypes.string,
+  isHeart: PropTypes.bool,
+  isPaid: PropTypes.bool,
 }
 
 export default OfferItemCard
