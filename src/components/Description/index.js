@@ -61,7 +61,8 @@ function Description(props) {
       <Truncate
         lines={!expanded && props.lines}
         ellipsis={
-          <span>
+          (!props.Disable ? 
+          <>
             ...
             <Link
               color="error"
@@ -71,7 +72,11 @@ function Description(props) {
               onClick={toggleLines}>
               Show More
             </Link>
-          </span>
+          </>:
+          <>
+          ...
+          </>
+          )
         }
         onTruncate={handleTruncate}>
         <div className={classes.Truncate}>{props.text}</div>
@@ -119,6 +124,7 @@ Description.propTypes = {
   text: PropTypes.string,
   bodyClassName: PropTypes.string,
   expectedLettersInLine: PropTypes.number,
+  Disable:PropTypes.bool
 }
 
 export default Description
