@@ -66,11 +66,15 @@ function OfferItemCard(props) {
 }
 
 OfferItemCard.propTypes = {
+  id: PropTypes.number,
   title: PropTypes.string,
   photo: PropTypes.string,
+  onClick: PropTypes.func,
   date: PropTypes.string,
   time: PropTypes.string,
   by: PropTypes.string,
+  member_id: PropTypes.number,
+  active_circle: PropTypes.number,
   Des:PropTypes.string,
 }
 
