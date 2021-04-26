@@ -1,8 +1,8 @@
-import {makeStyles} from '@material-ui/core'
+import { makeStyles } from '@material-ui/core'
 export const useStyles = makeStyles({
   root: {
     //height:"500px",
-    width: '374px',
+    width: '364px',
     minHeight: '300px',
     padding: '5px',
     display: 'flex',
@@ -13,13 +13,13 @@ export const useStyles = makeStyles({
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'space-between',
-    padding: '5px 15px',
+    padding: '5px 10px',
   },
   line2: {
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'space-between',
-    padding: '2px 15px',
+    padding: '2px 10px',
   },
   icon: {
     paddingLeft: '8px',
