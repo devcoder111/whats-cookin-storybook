@@ -28,7 +28,9 @@
     "eject": "react-scripts eject",
     "storybook": "start-storybook -p 6006 -s public",
     "build-storybook": "build-storybook -s public",
-    "release": "auto shipit --base-branch=main"
+    "release": "auto shipit --base-branch=main",
+    "create-component": "node scripts/createComponent/createComponent.js",
+    "create-page": "node scripts/createPage/createPage.js"
   },
   "eslintConfig": {
     "extends": [
