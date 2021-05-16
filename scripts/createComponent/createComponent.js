@@ -17,7 +17,7 @@ const componentStruct = {
               'Component.stories.js': buildStoryJs
           },
           {
-            'index.js': buildJS,
+            'Component.js': buildJS,
           },
         ],
       },
