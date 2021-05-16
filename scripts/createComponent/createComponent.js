@@ -11,9 +11,6 @@ const componentStruct = {
       components: {
         Component: [
           {
-            'styles.js': buildStyle,
-          },
-          {
               'Component.stories.js': buildStoryJs
           },
           {

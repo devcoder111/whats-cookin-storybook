@@ -3,27 +3,27 @@
 module.exports = {
     // Output generated for component's definition file
     buildJS: componentName =>
-  `import React from 'react';
-  import PropTypes from 'prop-types';
-  import {useStyles} from './styles.js';
-  
-  function ${componentName}() {
-    const classes = useStyles()
-    return <div></div>
-  }
-  ${componentName}.propTypes = {
-    //Prop Types Here
-  };
-  ${componentName}.defaultProps = {
-    //Default Props Here
-  };
-  export default ${componentName}
-  `,
+`import React from 'react';
+import PropTypes from 'prop-types';
+import {makeStyles} from '@material-ui/core';
+function ${componentName}() {
+  const useStyles = makeStyles({})
+  const classes = useStyles()
+  return <div></div>
+}
+${componentName}.propTypes = {
+  //Prop Types Here
+};
+${componentName}.defaultProps = {
+  //Default Props Here
+};
+export default ${componentName}
+`,
   
     // Output generated for Story File
     buildStoryJs: componentName =>
 `import React from 'react';
-import ${componentName} from '..Component.js';
+import ${componentName} from './${componentName}.js';
 
 
 export default {
@@ -39,8 +39,4 @@ Default.args = {
     children: '',
   };
   `,
-  buildCss: componentName => `.${componentName}Wrapper {}`,
-    buildStyle: componentName =>
-      `import { makeStyles } from "@material-ui/core";
-      export const useStyles = makeStyles({})`,
   }
