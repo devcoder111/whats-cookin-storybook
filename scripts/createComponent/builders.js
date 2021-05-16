@@ -5,9 +5,10 @@ module.exports = {
     buildJS: componentName =>
   `import React from 'react';
   import PropTypes from 'prop-types';
-  import styles from './${componentName}.module.css';
+  import {useStyles} from './styles.js';
   
   function ${componentName}() {
+    const classes = useStyles()
     return <div></div>
   }
   ${componentName}.propTypes = {
@@ -22,7 +23,7 @@ module.exports = {
     // Output generated for Story File
     buildStoryJs: componentName =>
 `import React from 'react';
-import ${componentName} from '../${componentName}';
+import ${componentName} from '..Component.js';
 
 
 export default {
