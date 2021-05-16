@@ -1,6 +1,6 @@
 const path = require('path')
 const fs = require('fs')
-const {buildJS, buildStyle, buildStory} = require('./builders')
+const {buildJS, buildStyle, buildStoryJs} = require('./builders')
 
 const replacementString = 'Component'
 const componentPath = 'components/'
@@ -14,7 +14,7 @@ const componentStruct = {
             'styles.js': buildStyle,
           },
           {
-            '__stories__': buildStory.js
+              'Component.stories.js': buildStoryJs
           },
           {
             'index.js': buildJS,
