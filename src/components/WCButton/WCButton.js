@@ -8,6 +8,10 @@ function WCButton(props) {
     style,
     onClick,
     text,
+    type,
+    icon,
+    endIcon,
+    size
   } = props
   
   const useStyles = makeStyles({
@@ -27,14 +31,18 @@ function WCButton(props) {
 
   
   return (
-  <Button variant='contained' className={classes.root} disabled={disabled} onClick={onClick} TouchRippleProps={{classes: {child: classes.onTouch}}}>{text}</Button>
+  <Button variant='contained' className={classes.root} disabled={disabled} onClick={onClick} TouchRippleProps={{classes: {child: classes.onTouch}}} type={type} endIcon={endIcon} size={size}>{icon}{text}</Button>
   )
 }
 WCButton.propTypes = {
   disabled: PropTypes.bool,
   style: PropTypes.object,
-  onClick: PropTypes.func.isRequired,
-  text: PropTypes.string
+  onClick: PropTypes.func,
+  text: PropTypes.string,
+  type: PropTypes.string,
+  icon: PropTypes.func,
+  endIcon: PropTypes.func,
+  size: PropTypes.string
 };
 WCButton.defaultProps = {
   text: 'Sample'
