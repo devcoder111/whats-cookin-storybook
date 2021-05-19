@@ -21,17 +21,20 @@ function WCButton(props) {
       '&:hover':{
             backgroundColor: '#FFBF90'
       },
+      '&:active':{
+        boxShadow: 'inset 0px 0px 15px #c1c1c1'
+      },
       ...style,
     },
     onTouch: {
-        backgroundColor: '#F0A269'
+        backgroundColor: '#F0A269',
     }
   })
   const classes = useStyles()
 
   
   return (
-  <Button variant='contained' className={classes.root} disabled={disabled} onClick={onClick} TouchRippleProps={{classes: {child: classes.onTouch}}} type={type} endIcon={endIcon} size={size}>{icon}{text}</Button>
+  <Button variant='contained' className={classes.root} disabled={disabled} onClick={onClick} TouchRippleProps={{classes: {child: classes.onTouch}}} type={type} endIcon={endIcon} size={size} >{icon}{text}</Button>
   )
 }
 WCButton.propTypes = {
